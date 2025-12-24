@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -25,13 +26,25 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-@keyframes heartBeat {
+@keyframes appear {
   from {
     background-position: 0px;
   }
 
   to {
-    background-position: -4864px;
+    background-position: -4352px;
+  }
+
+  /* Total width of sprite sheet */
+}
+
+@keyframes disappear {
+  from {
+    background-position: -4352px;
+  }
+
+  to {
+    background-position: 0px;
   }
 
   /* Total width of sprite sheet */
@@ -41,7 +54,58 @@ body {
   width: 256px;
   /* Width of one frame */
   height: 256px;
-  background-image: url('/heart-sprite_sheet.png');
-  animation: heartBeat 1s steps(19) ;
+  background-image: url('../public/heart_sprite_sheet.png');
+  animation: appear 1s steps(17) forwards, disappear 1s steps(17) 4s forwards ;
   /* steps = number of frames */
+}
+
+/* Total Loop Time: 4s (1s appear, 2s pause, 1s disappear) */
+.my-infinite-sprite {
+  width: 256px;
+  /* Width of one frame */
+  height: 256px;
+  background-image: url('../public/heart_sprite_sheet.png');
+  animation: life-cycle 10s steps(17) infinite;
+}
+
+@keyframes life-cycle {
+
+  /* 0% to 25% (1 second): Appear */
+  0% {
+    background-position: 0px;
+    opacity: 1;
+  }
+
+  10% {
+    background-position: -4352px;
+    opacity: 1;
+  }
+
+  /* End of sprite sheet */
+
+  /* 25% to 75% (2 seconds): PAUSE (Hold the values) */
+  60% {
+    background-position: -4352px;
+    opacity: 1;
+  }
+
+  /* 75% to 100% (1 second): Disappear */
+  70% {
+    background-position: 0px;
+    opacity: 1;
+  }
+
+  100% {
+    background-position: 0px;
+    opacity: 1;
+  }
+
+  /* Assuming you continue smoothly or reverse */
+}
+
+.lxgw-wenkai-tc-regular {
+  font-family: "LXGW WenKai TC", cursive;
+  font-weight: 400;
+  font-style: normal;
+  color: #000;
 }
