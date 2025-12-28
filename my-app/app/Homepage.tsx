@@ -32,7 +32,7 @@ const Homepage = () => {
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState(audioOptions[0].label);
+  const [selectedOption, setSelectedOption] = useState("Select an Option");
   const [isPlaying, setIsPlaying] = useState(false);
   const [text, setText] = useState("");
   const audioRef = useRef(null);
@@ -79,7 +79,7 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-200 via-red-250 to-pink-300">
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-300 via-red-250 to-red-400">
         {/* Floating Hearts Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(15)].map((_, i) => (
@@ -111,7 +111,6 @@ const Homepage = () => {
           <div className="bg-white bg-opacity-90 rounded-3xl p-12 max-w-md w-full">
             {/* <h1 className="text-4xl font-bold text-center mb-2 text-pink-600">
           </h1> */}
-            <p className="text-center text-gray-600 mb-8">Select a Language</p>
 
             {/* Dropdown Selector */}
             <div className="mb-6">
