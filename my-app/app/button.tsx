@@ -108,7 +108,7 @@ const RetroButton = ({
     <div className={`wrapper ${className}`}>
       <div
         role="button"
-        className="retro-btn"
+        className="retro-btn lg"
         onClick={handleClick}
         onMouseDown={() => setIsActive(true)}
         onMouseUp={() => setIsActive(false)}
@@ -116,12 +116,12 @@ const RetroButton = ({
         onMouseLeave={handleMouseLeave}
         ref={buttonRef}
       >
-        <a className={getButtonClasses()}>
+        <div className={getButtonClasses()}>
           <span className="btn-inner">
             <span className="content-wrapper">
               <span className="btn-content">
                 <span className="btn-content-inner" label={label}></span>
-                {isLoader && (
+                {/* {isLoader && (
                   <>
                     <span className="content">{label}</span>
                     <span
@@ -134,11 +134,11 @@ const RetroButton = ({
                       />
                     </span>
                   </>
-                )}
+                )} */}
               </span>
             </span>
           </span>
-        </a>
+        </div>
       </div>
     </div>
   );
