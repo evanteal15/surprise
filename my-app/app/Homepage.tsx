@@ -107,6 +107,12 @@ const Homepage = () => {
         </div>
 
         {/* Main Content */}
+        <div>
+          <p className="lxgw-wenkai-tc-regular" style={{ fontSize: 48 }}>
+            {text}
+          </p>
+        </div>
+
         <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
           <div className="bg-white bg-opacity-90 rounded-3xl p-12 max-w-md w-full">
             {/* <h1 className="text-4xl font-bold text-center mb-2 text-pink-600">
@@ -126,30 +132,25 @@ const Homepage = () => {
                 ))}
               </select>
             </div>
-
-            {/* Play Button */}
-            <div className="flex gap-4 justify-center">
-              <button
-                onClick={handlePress}
-                className={`py-4 rounded-lg font-semibold text-black transition-all transform hover:scale-105 active:scale-95`}
-                style={{
-                  width: 100,
-                  height: 100,
-                  backgroundColor: "#FF6B6B",
-                  borderRadius: 50,
-                }}
-              >
-                {isPlaying ? "Playing..." : "Press Me"}
-              </button>
-            </div>
           </div>
         </div>
         {/* Text */}
-        <div className="mt-6">
-          <p className="lxgw-wenkai-tc-regular">{text}</p>
+        <div className="flex gap-4 justify-center">
+          <button
+            onClick={handlePress}
+            className={`py-4 rounded-lg font-semibold text-black transition-all transform hover:scale-105 active:scale-95`}
+            style={{
+              width: 100,
+              height: 100,
+              backgroundColor: "#FF6B6B",
+              borderRadius: 50,
+            }}
+          >
+            {isPlaying ? "Playing..." : "Press Me"}
+          </button>
         </div>
 
-        <RetroButton onClick={handlePress} />
+        {/* <RetroButton onClick={handlePress} /> */}
 
         <style jsx>{`
           @keyframes float {
