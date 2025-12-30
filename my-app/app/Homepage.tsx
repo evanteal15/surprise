@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./globals.css";
 import RetroButton from "./button";
 
@@ -7,49 +7,62 @@ const Homepage = () => {
   const audioOptions = [
     {
       label: "English",
-      text: "I love you",
+      text: "I Love You",
+      textType: "latin",
       audioUrl: "/BO_rec.flac",
     },
     {
       label: "Spanish",
-      text: "Te amo",
+      text: "Te Amo",
+      textType: "latin",
       audioUrl: "/image_rec.flac",
     },
     {
       label: "French",
-      text: "Je t'aime",
+      text: "Je T'aime",
+      textType: "latin",
       audioUrl: "/image_rec.flac",
     },
     {
       label: "Italian",
-      text: "Ti amo",
+      text: "Ti Amo",
+      textType: "latin",
       audioUrl: "/image_rec.flac",
     },
     {
       label: "Chinese",
       text: "我爱你",
+      textType: "chinese",
       audioUrl: "/image_rec.flac",
     },
   ];
 
   const [selectedOption, setSelectedOption] = useState("Select an Option");
   const [isPlaying, setIsPlaying] = useState(false);
-  const [text, setText] = useState("");
-  const audioRef = useRef(null);
+  const [textType, setTextType] = useState("latin");
+  const [text, setText] = useState("I Love You");
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/BO_rec.flac");
+  }, []);
 
   const handlePress = () => {
+    console.log("Button pressed!");
     if (isPlaying) {
       handleStop();
       return;
     }
     const selected = audioOptions.find((opt) => opt.label === selectedOption);
 
-    if (audioRef.current) {
+    if (audioRef.current && isPlaying) {
+      console.log("Playing!");
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
     }
 
     if (selected) {
+      console.log("Playing Song!");
       audioRef.current = new Audio(selected.audioUrl);
       audioRef.current.play();
       setIsPlaying(true);
@@ -58,6 +71,11 @@ const Homepage = () => {
       audioRef.current.onended = () => {
         setIsPlaying(false);
       };
+    }
+
+    if (!selected && audioRef.current) {
+      audioRef.current.play();
+      setIsPlaying(true);
     }
   };
 
@@ -74,12 +92,13 @@ const Homepage = () => {
     const selected = audioOptions.find((opt) => opt.label === value);
     if (selected) {
       setText(selected.text);
+      setTextType(selected.textType);
     }
   };
 
   return (
     <>
-      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-pink-300 via-red-250 to-red-400">
+      <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-red-400 via-red-250 to-pink-300">
         {/* Floating Hearts Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           {[...Array(15)].map((_, i) => (
@@ -107,47 +126,202 @@ const Homepage = () => {
         </div>
 
         {/* Main Content */}
-        <div>
-          <p className="lxgw-wenkai-tc-regular" style={{ fontSize: 48 }}>
-            {text}
-          </p>
+        <div
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            paddingTop: 100,
+            paddingBottom: 50,
+          }}
+        >
+          {textType === "latin" ? (
+            <p className="vibur-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "chinese" ? (
+            <p className="zcool-kuaile-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : null}
         </div>
 
-        <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
-          <div className="bg-white bg-opacity-90 rounded-3xl p-12 max-w-md w-full">
-            {/* <h1 className="text-4xl font-bold text-center mb-2 text-pink-600">
+        <div
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            paddingTop: 75,
+            paddingBottom: 50,
+          }}
+        >
+          {/* <h1 className="text-4xl font-bold text-center mb-2 text-pink-600">
           </h1> */}
 
-            {/* Dropdown Selector */}
-            <div className="mb-6">
-              <select
-                value={selectedOption}
-                onChange={(e) => hansetSelectedOption(e.target.value)}
-                className="w-full px-4 py-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white text-gray-800"
-              >
-                {audioOptions.map((option, index) => (
-                  <option key={index} value={option.label}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-            </div>
+          {/* Dropdown Selector */}
+          <div className="mb-6 relative z-50">
+            <select
+              value={selectedOption}
+              onChange={(e) => hansetSelectedOption(e.target.value)}
+              className="w-full px-4 py-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white text-gray-800"
+            >
+              {audioOptions.map((option, index) => (
+                <option key={index} value={option.label}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
-        {/* Text */}
-        <div className="flex gap-4 justify-center">
-          <button
-            onClick={handlePress}
-            className={`py-4 rounded-lg font-semibold text-black transition-all transform hover:scale-105 active:scale-95`}
+
+        {/* Picture 1 */}
+        <div
+          className="mb-12"
+          style={{ position: "fixed", top: 400, left: 50 }}
+        >
+          <img
+            src="/enlighten.jpg"
+            alt="Enlighten"
             style={{
-              width: 100,
-              height: 100,
-              backgroundColor: "#FF6B6B",
-              borderRadius: 50,
+              width: "14%",
+              height: "14%",
+              borderRadius: 20,
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
-          >
-            {isPlaying ? "Playing..." : "Press Me"}
-          </button>
+          />
+        </div>
+
+        {/* Picture 1 */}
+        <div
+          className="mb-12"
+          style={{ position: "fixed", top: 700, left: 120 }}
+        >
+          <img
+            src="/booth.jpg"
+            alt="booth"
+            style={{
+              width: "34%",
+              height: "34%",
+              borderRadius: 20,
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            }}
+          />
+        </div>
+
+        {/* Picture 1 */}
+        <div
+          className="mb-12"
+          style={{ position: "fixed", top: 500, left: 320 }}
+        >
+          <img
+            src="/funny.jpg"
+            alt="funny"
+            style={{
+              width: "18%",
+              height: "18%",
+              borderRadius: 20,
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            }}
+          />
+        </div>
+
+        {/* Picture 5 */}
+        <div
+          className="mb-12"
+          style={{ position: "fixed", top: 400, left: 1350 }}
+        >
+          <img
+            src="/foods.jpg"
+            alt="foods"
+            style={{
+              width: "65%",
+              height: "65%",
+              borderRadius: 20,
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            }}
+          />
+        </div>
+
+        {/* Picture 6 */}
+        <div
+          className="mb-12"
+          style={{ position: "fixed", top: 400, left: 1050 }}
+        >
+          <img
+            src="/goblin.jpg"
+            alt="goblin"
+            style={{
+              width: "35%",
+              height: "35%",
+              borderRadius: 20,
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            }}
+          />
+        </div>
+
+        {/* Picture 1 */}
+        <div
+          className="mb-12"
+          style={{ position: "fixed", top: 600, left: 1200 }}
+        >
+          <img
+            src="/pokemon.jpg"
+            alt="pokemon"
+            style={{
+              width: "34%",
+              height: "34%",
+              borderRadius: 20,
+              boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
+            }}
+          />
+        </div>
+
+        {/* Pressable Button */}
+        <div className="flex gap-4 justify-center">
+          <div className="relative" style={{ width: 200, height: 200 }}>
+            {/* Shadow/Border Layer */}
+            <div
+              className="absolute"
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: "#a00000",
+                borderRadius: 100,
+                top: 8,
+                left: 0,
+              }}
+            />
+
+            {/* Main Button */}
+            <button
+              onClick={handlePress}
+              className="absolute font-semibold text-black transition-all"
+              style={{
+                width: 200,
+                height: 200,
+                backgroundColor: "#f40000",
+                borderRadius: 100,
+                top: 0,
+                left: 0,
+                // border: "4px #e38282ff",
+                boxShadow: "0 4px 0 #a00000",
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.top = "4px";
+                e.currentTarget.style.boxShadow = "0 2px 0 #a00000";
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.top = "0px";
+                e.currentTarget.style.boxShadow = "0 4px 0 #a00000";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.top = "0px";
+                e.currentTarget.style.boxShadow = "0 4px 0 #a00000";
+              }}
+            >
+              {isPlaying ? "Playing..." : "Press Me :>"}
+            </button>
+          </div>
         </div>
 
         {/* <RetroButton onClick={handlePress} /> */}

@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Vibur&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -108,4 +111,22 @@ body {
   font-weight: 800;
   font-style: normal;
   color: #232222;
+}
+
+.zhi-mang-xing-regular {
+  font-family: "Zhi Mang Xing", cursive;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.vibur-regular {
+  font-family: "Vibur", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.zcool-kuaile-regular {
+  font-family: "ZCOOL KuaiLe", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
