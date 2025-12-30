@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./globals.css";
-import RetroButton from "./button";
 
 const Homepage = () => {
   // You can customize these options - add more or change labels/audio URLs
