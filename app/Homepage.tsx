@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./globals.css";
-// Access the variable we set in next.config.js
 
 const Homepage = () => {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   // You can customize these options - add more or change labels/audio URLs
   const audioOptions = [
     {
@@ -16,25 +14,25 @@ const Homepage = () => {
       label: "Spanish",
       text: "Te Amo",
       textType: "latin",
-      audioUrl: "${basePath}image_rec.flac",
+      audioUrl: "/image_rec.flac",
     },
     {
       label: "French",
       text: "Je T'aime",
       textType: "latin",
-      audioUrl: "${basePath}image_rec.flac",
+      audioUrl: "/image_rec.flac",
     },
     {
       label: "Italian",
       text: "Ti Amo",
       textType: "latin",
-      audioUrl: "${basePath}image_rec.flac",
+      audioUrl: "/image_rec.flac",
     },
     {
       label: "Chinese",
       text: "我爱你",
       textType: "chinese",
-      audioUrl: "${basePath}image_rec.flac",
+      audioUrl: "/image_rec.flac",
     },
   ];
 
@@ -45,7 +43,7 @@ const Homepage = () => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio("${basePath}BO_rec.flac");
+    audioRef.current = new Audio("/BO_rec.flac");
   }, []);
 
   const handlePress = () => {
@@ -181,7 +179,7 @@ const Homepage = () => {
           style={{ position: "fixed", top: 400, left: 50 }}
         >
           <img
-            src="${basePath}enlighten.jpg"
+            src="/enlighten.jpg"
             alt="Enlighten"
             style={{
               width: "14%",
@@ -198,7 +196,7 @@ const Homepage = () => {
           style={{ position: "fixed", top: 700, left: 120 }}
         >
           <img
-            src="${basePath}booth.jpg"
+            src="/booth.jpg"
             alt="booth"
             style={{
               width: "34%",
@@ -215,7 +213,7 @@ const Homepage = () => {
           style={{ position: "fixed", top: 500, left: 320 }}
         >
           <img
-            src="${basePath}funny.jpg"
+            src="/funny.jpg"
             alt="funny"
             style={{
               width: "18%",
@@ -232,7 +230,7 @@ const Homepage = () => {
           style={{ position: "fixed", top: 400, left: 1350 }}
         >
           <img
-            src="${basePath}foods.jpg"
+            src="/foods.jpg"
             alt="foods"
             style={{
               width: "65%",
@@ -249,7 +247,7 @@ const Homepage = () => {
           style={{ position: "fixed", top: 400, left: 1050 }}
         >
           <img
-            src="${basePath}goblin.jpg"
+            src="/goblin.jpg"
             alt="goblin"
             style={{
               width: "35%",
@@ -266,7 +264,7 @@ const Homepage = () => {
           style={{ position: "fixed", top: 600, left: 1200 }}
         >
           <img
-            src="${basePath}pokemon.jpg"
+            src="/pokemon.jpg"
             alt="pokemon"
             style={{
               width: "34%",
