@@ -5,6 +5,12 @@ const Homepage = () => {
   // You can customize these options - add more or change labels/audio URLs
   const audioOptions = [
     {
+      label: "English",
+      text: "I Love You",
+      textType: "latin",
+      audioUrl: "/english.flac",
+    },
+    {
       label: "Arabic",
       text: "أنا أحبك",
       textType: "arabic",
@@ -27,12 +33,6 @@ const Homepage = () => {
       text: "Ik Hou Van Je",
       textType: "latin",
       audioUrl: "/dutch.flac",
-    },
-    {
-      label: "English",
-      text: "I Love You",
-      textType: "latin",
-      audioUrl: "/english.flac",
     },
     {
       label: "French",
@@ -72,7 +72,7 @@ const Homepage = () => {
     },
     {
       label: "Japanese",
-      text: "私はあなたを愛しています",
+      text: "",
       textType: "japanese",
       audioUrl: "/image_rec.flac",
     },
@@ -118,23 +118,66 @@ const Homepage = () => {
       textType: "latin",
       audioUrl: "/spanish.flac",
     },
-
+    {
+      label: "Swedish",
+      text: "Jag Älskar Dig",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Thai",
+      text: "ฉฉันรักเธอมาก",
+      textType: "thai",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Turkish",
+      text: "Seni Seviyorum",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Urdu",
+      text: "میں تم سے محبت کرتا/کرتی ہوں",
+      textType: "arabic",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Vietnamese",
+      text: "Chị Yêu Em",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
     {
       label: "Yoruba",
-      text: "أنا أحبك",
-      textType: "arabic",
+      text: "Mo Nife E",
+      textType: "latin",
       audioUrl: "/image_rec.flac",
     },
   ];
 
-  const [selectedOption, setSelectedOption] = useState("Select an Option");
+  const [selectedOption, setSelectedOption] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [textType, setTextType] = useState("latin");
   const [text, setText] = useState("I Love You");
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const filteredOptions = audioOptions.filter((option) =>
+    option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   useEffect(() => {
-    audioRef.current = new Audio("/BO_rec.flac");
+    audioRef.current = new Audio("/english.flac");
+
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handlePress = () => {
@@ -177,14 +220,27 @@ const Homepage = () => {
     }
   };
 
-  const hansetSelectedOption = (value: string) => {
+  const handleSelect = (value: string) => {
     setSelectedOption(value);
+
     const selected = audioOptions.find((opt) => opt.label === value);
     if (selected) {
       setText(selected.text);
       setTextType(selected.textType);
     }
+
+    setSearchTerm("");
+    setIsOpen(false);
   };
+
+  // const hansetSelectedOption = (value: string) => {
+  //   setSelectedOption(value);
+  //   const selected = audioOptions.find((opt) => opt.label === value);
+  //   if (selected) {
+  //     setText(selected.text);
+  //     setTextType(selected.textType);
+  //   }
+  // };
 
   return (
     <>
@@ -226,7 +282,7 @@ const Homepage = () => {
           }}
         >
           {textType === "latin" ? (
-            <p className="vibur-regular" style={{ fontSize: 156 }}>
+            <p className="borel-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
           ) : textType === "chinese" ? (
@@ -238,10 +294,10 @@ const Homepage = () => {
               {text}
             </p>
           ) : textType === "arabic" ? (
-            <p className="rubik-regular" style={{ fontSize: 156 }}>
+            <p className="zain-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
-          ) : textType === "greek" ? (
+          ) : textType === "greek" || textType === "cyrillic" ? (
             <p className="playpen-sans-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
@@ -251,6 +307,10 @@ const Homepage = () => {
             </p>
           ) : textType === "korean" ? (
             <p className="gamja-flower-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "thai" ? (
+            <p className="sriracha-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
           ) : null}
@@ -269,7 +329,7 @@ const Homepage = () => {
           </h1> */}
 
           {/* Dropdown Selector */}
-          <div className="mb-6 relative z-50">
+          {/* <div className="mb-6 relative z-50">
             <select
               value={selectedOption}
               onChange={(e) => hansetSelectedOption(e.target.value)}
@@ -281,6 +341,67 @@ const Homepage = () => {
                 </option>
               ))}
             </select>
+          </div> */}
+          <div
+            className="relative z-50 w-full"
+            style={{ maxWidth: "300px" }}
+            ref={dropdownRef}
+          >
+            {/* Search Input */}
+            <input
+              type="text"
+              value={isOpen ? searchTerm : selectedOption}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setIsOpen(true);
+              }}
+              onFocus={() => setIsOpen(true)}
+              placeholder="Search or select an option..."
+              className="w-full px-4 py-3 border-2 border-pink-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white text-gray-700"
+            />
+
+            {/* Dropdown Arrow */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-700"
+            >
+              <svg
+                className={`w-5 h-5 transition-transform ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown Options */}
+            {isOpen && (
+              <div className="absolute z-10 w-full mt-2 bg-white border-2 border-pink-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                {filteredOptions.length > 0 ? (
+                  filteredOptions.map((option, index) => (
+                    <div
+                      key={index}
+                      onClick={() => handleSelect(option.label)}
+                      className="px-4 py-3 hover:bg-pink-100 cursor-pointer transition-colors border-b border-pink-100 last:border-b-0 text-gray-700"
+                    >
+                      {option.label}
+                    </div>
+                  ))
+                ) : (
+                  <div className="px-4 py-3 text-gray-700 text-center">
+                    No options found
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
