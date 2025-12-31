@@ -5,20 +5,62 @@ const Homepage = () => {
   // You can customize these options - add more or change labels/audio URLs
   const audioOptions = [
     {
+      label: "Arabic",
+      text: "أنا أحبك",
+      textType: "arabic",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Bengali",
+      text: "আমি তোমাকে ভালবাসি",
+      textType: "bengali",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Chinese",
+      text: "我爱你",
+      textType: "chinese",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Dutch",
+      text: "Ik hou van je",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
       label: "English",
       text: "I Love You",
       textType: "latin",
       audioUrl: "/BO_rec.flac",
     },
     {
-      label: "Spanish",
-      text: "Te Amo",
+      label: "French",
+      text: "Je T'aime",
       textType: "latin",
       audioUrl: "/image_rec.flac",
     },
     {
-      label: "French",
-      text: "Je T'aime",
+      label: "German",
+      text: "أنا أحبك",
+      textType: "arabic",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Greek",
+      text: "Σ'αγαπώ",
+      textType: "greek",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Hindi",
+      text: "मैं तुम्हें प्यार करता हूँ",
+      textType: "hindi",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Hungarian",
+      text: "Szeretlek",
       textType: "latin",
       audioUrl: "/image_rec.flac",
     },
@@ -29,9 +71,58 @@ const Homepage = () => {
       audioUrl: "/image_rec.flac",
     },
     {
-      label: "Chinese",
-      text: "我爱你",
-      textType: "chinese",
+      label: "Japanese",
+      text: "私はあなたを愛しています",
+      textType: "japanese",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Korean",
+      text: "사랑해",
+      textType: "korean",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Malay",
+      text: "Saya sayang awak",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Polish",
+      text: "Kocham cię",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Portuguese",
+      text: "Eu Te Amo",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Romanian",
+      text: "te iubesc",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Russian",
+      text: "Я люблю тебя",
+      textType: "cyrillic",
+      audioUrl: "/image_rec.flac",
+    },
+    {
+      label: "Spanish",
+      text: "Te Amo",
+      textType: "latin",
+      audioUrl: "/image_rec.flac",
+    },
+
+    {
+      label: "Yoruba",
+      text: "أنا أحبك",
+      textType: "arabic",
       audioUrl: "/image_rec.flac",
     },
   ];
@@ -140,6 +231,26 @@ const Homepage = () => {
             </p>
           ) : textType === "chinese" ? (
             <p className="zcool-kuaile-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "bengali" ? (
+            <p className="hind-siliguri-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "arabic" ? (
+            <p className="rubik-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "greek" ? (
+            <p className="playpen-sans-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "hindi" ? (
+            <p className="playpen-sans-deva-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "korean" ? (
+            <p className="gamja-flower-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
           ) : null}
