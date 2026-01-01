@@ -72,9 +72,9 @@ const Homepage = () => {
     },
     {
       label: "Japanese",
-      text: "",
+      text: "愛してる",
       textType: "japanese",
-      audioUrl: "/image_rec.flac",
+      audioUrl: "/japanese.flac",
     },
     {
       label: "Korean",
@@ -113,6 +113,12 @@ const Homepage = () => {
       audioUrl: "/russian.flac",
     },
     {
+      label: "Serbian",
+      text: "Volim Te",
+      textType: "latin",
+      audioUrl: "/serbian.flac",
+    },
+    {
       label: "Spanish",
       text: "Te Amo",
       textType: "latin",
@@ -122,37 +128,31 @@ const Homepage = () => {
       label: "Swedish",
       text: "Jag Älskar Dig",
       textType: "latin",
-      audioUrl: "/image_rec.flac",
+      audioUrl: "/swedish.flac",
     },
     {
       label: "Thai",
-      text: "ฉฉันรักเธอมาก",
+      text: "ผมรักคุณ",
       textType: "thai",
-      audioUrl: "/image_rec.flac",
+      audioUrl: "/thai.flac",
     },
     {
       label: "Turkish",
       text: "Seni Seviyorum",
       textType: "latin",
-      audioUrl: "/image_rec.flac",
-    },
-    {
-      label: "Urdu",
-      text: "میں تم سے محبت کرتا/کرتی ہوں",
-      textType: "arabic",
-      audioUrl: "/image_rec.flac",
+      audioUrl: "/turkish.flac",
     },
     {
       label: "Vietnamese",
-      text: "Chị Yêu Em",
+      text: "Anh Yêu Em",
       textType: "latin",
-      audioUrl: "/image_rec.flac",
+      audioUrl: "/viet.flac",
     },
     {
       label: "Yoruba",
       text: "Mo Nife E",
       textType: "latin",
-      audioUrl: "/image_rec.flac",
+      audioUrl: "/yoruba.flac",
     },
   ];
 
@@ -280,8 +280,8 @@ const Homepage = () => {
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
-            paddingTop: 100,
-            paddingBottom: 50,
+            paddingTop: 150,
+            paddingBottom: 10,
           }}
         >
           {textType === "latin" ? (
@@ -293,11 +293,15 @@ const Homepage = () => {
               {text}
             </p>
           ) : textType === "bengali" ? (
-            <p className="hind-siliguri-regular" style={{ fontSize: 156 }}>
+            <p className="hind-siliguri-regular" style={{ fontSize: 146 }}>
               {text}
             </p>
           ) : textType === "arabic" ? (
             <p className="zain-regular" style={{ fontSize: 156 }}>
+              {text}
+            </p>
+          ) : textType === "urdu" ? (
+            <p className="zain-regular" style={{ fontSize: 86 }}>
               {text}
             </p>
           ) : textType === "greek" || textType === "cyrillic" ? (
@@ -411,7 +415,7 @@ const Homepage = () => {
         {/* Picture 1 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 400, left: 50 }}
+          style={{ position: "fixed", top: 360, left: 50 }}
         >
           <img
             src="/enlighten.jpg"
@@ -428,7 +432,7 @@ const Homepage = () => {
         {/* Picture 1 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 700, left: 120 }}
+          style={{ position: "fixed", top: 650, left: 120 }}
         >
           <img
             src="/booth.jpg"
@@ -462,7 +466,7 @@ const Homepage = () => {
         {/* Picture 5 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 400, left: 1350 }}
+          style={{ position: "fixed", top: 360, left: 1450 }}
         >
           <img
             src="/foods.jpg"
@@ -470,7 +474,7 @@ const Homepage = () => {
             style={{
               width: "65%",
               height: "65%",
-              borderRadius: 20,
+              borderRadius: 10,
               boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
           />
