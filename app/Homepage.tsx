@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import "./globals.css";
 
 const Homepage = () => {
@@ -168,6 +168,40 @@ const Homepage = () => {
     option.label.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const [heartVersions, setHeartVersions] = useState<number[]>(
+    Array(15).fill(0)
+  );
+
+  const [hearts, setHearts] = useState(() =>
+    [...Array(15)].map((_, i) => ({
+      id: i, // unique identifier for each heart slot
+      version: 0, // changes each time we want to reset
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 30 + 20,
+      delay: Math.random() * 5,
+      duration: Math.random() * 10 + 10,
+      spriteDelay: Math.random() * 4,
+    }))
+  );
+
+  const handleAnimationEnd = (index: number) => {
+    setHearts((prev) => {
+      const newHearts = [...prev];
+      newHearts[index] = {
+        id: prev[index].id,
+        version: prev[index].version + 1, // increment version
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        size: Math.random() * 30 + 20,
+        delay: 0,
+        duration: Math.random() * 10 + 10,
+        spriteDelay: 0,
+      };
+      return newHearts;
+    });
+  };
+
   useEffect(() => {
     audioRef.current = new Audio("/english.flac");
 
@@ -250,24 +284,23 @@ const Homepage = () => {
       <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-red-400 via-red-250 to-pink-300">
         {/* Floating Hearts Background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
+          {hearts.map((heart, i) => (
             <div
-              key={i}
+              key={`${heart.id}-${heart.version}`} // ← Changing key forces remount
               className="absolute text-red-400 opacity-30 animate-float"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                fontSize: `${Math.random() * 30 + 20}px`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${Math.random() * 10 + 10}s`,
+                left: `${heart.left}%`,
+                top: `${heart.top}%`,
+                fontSize: `${heart.size}px`,
+                animationDelay: `${heart.delay}s`,
+                animationDuration: `${heart.duration}s`,
               }}
+              onAnimationIteration={() => handleAnimationEnd(i)}
             >
               <div
                 className="my-infinite-sprite"
                 style={{
-                  // Use a NEGATIVE delay.
-                  // If the loop is 4s, we randomize between -4s and 0s.
-                  animationDelay: `-${Math.random() * 4}s`,
+                  animationDelay: `-${heart.spriteDelay}s`,
                 }}
               />
             </div>
