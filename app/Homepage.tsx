@@ -159,7 +159,7 @@ const Homepage = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [textType, setTextType] = useState("latin");
   const [text, setText] = useState("I Love You");
@@ -171,8 +171,11 @@ const Homepage = () => {
   useEffect(() => {
     audioRef.current = new Audio("/english.flac");
 
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     }
