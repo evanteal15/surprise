@@ -280,20 +280,26 @@ const Homepage = () => {
             justifyContent: "center",
             alignItems: "center",
             display: "flex",
-            paddingTop: 150,
-            paddingBottom: 10,
+            paddingTop: 100,
+            paddingBottom: -50,
           }}
         >
           {textType === "latin" ? (
-            <p className="borel-regular" style={{ fontSize: 156 }}>
+            <p
+              className="borel-regular"
+              style={{ paddingTop: 20, fontSize: 156 }}
+            >
               {text}
             </p>
           ) : textType === "chinese" ? (
             <p className="zcool-kuaile-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
-          ) : textType === "bengali" ? (
-            <p className="hind-siliguri-regular" style={{ fontSize: 146 }}>
+          ) : textType === "bengali" || textType === "hindi" ? (
+            <p
+              className="hind-siliguri-regular"
+              style={{ paddingBottom: 30, fontSize: 146 }}
+            >
               {text}
             </p>
           ) : textType === "arabic" ? (
@@ -308,12 +314,12 @@ const Homepage = () => {
             <p className="playpen-sans-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
-          ) : textType === "hindi" ? (
-            <p className="playpen-sans-deva-regular" style={{ fontSize: 156 }}>
+          ) : textType === "korean" ? (
+            <p className="jua-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
-          ) : textType === "korean" ? (
-            <p className="gamja-flower-regular" style={{ fontSize: 156 }}>
+          ) : textType === "japanese" ? (
+            <p className="noto-sans-jp-regular" style={{ fontSize: 156 }}>
               {text}
             </p>
           ) : textType === "thai" ? (
@@ -415,14 +421,14 @@ const Homepage = () => {
         {/* Picture 1 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 360, left: 50 }}
+          style={{ position: "fixed", top: 400, left: 340 }}
         >
           <img
             src="/enlighten.jpg"
             alt="Enlighten"
             style={{
-              width: "14%",
-              height: "14%",
+              width: "18%",
+              height: "18%",
               borderRadius: 20,
               boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
@@ -431,7 +437,7 @@ const Homepage = () => {
 
         {/* Picture 1 */}
         <div
-          className="mb-12"
+          className="mb-12 z-20"
           style={{ position: "fixed", top: 650, left: 120 }}
         >
           <img
@@ -449,14 +455,14 @@ const Homepage = () => {
         {/* Picture 1 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 500, left: 320 }}
+          style={{ position: "fixed", top: 350, left: 50 }}
         >
           <img
             src="/funny.jpg"
             alt="funny"
             style={{
-              width: "18%",
-              height: "18%",
+              width: "16%",
+              height: "16%",
               borderRadius: 20,
               boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
@@ -466,14 +472,14 @@ const Homepage = () => {
         {/* Picture 5 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 360, left: 1450 }}
+          style={{ position: "fixed", top: 350, left: 1410 }}
         >
           <img
             src="/foods.jpg"
             alt="foods"
             style={{
-              width: "65%",
-              height: "65%",
+              width: "81%",
+              height: "81%",
               borderRadius: 10,
               boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
@@ -483,14 +489,14 @@ const Homepage = () => {
         {/* Picture 6 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 400, left: 1050 }}
+          style={{ position: "fixed", top: 400, left: 1110 }}
         >
           <img
             src="/goblin.jpg"
             alt="goblin"
             style={{
-              width: "35%",
-              height: "35%",
+              width: "40%",
+              height: "40%",
               borderRadius: 20,
               boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
@@ -500,14 +506,14 @@ const Homepage = () => {
         {/* Picture 1 */}
         <div
           className="mb-12"
-          style={{ position: "fixed", top: 600, left: 1200 }}
+          style={{ position: "fixed", top: 585, left: 1280 }}
         >
           <img
             src="/pokemon.jpg"
             alt="pokemon"
             style={{
-              width: "34%",
-              height: "34%",
+              width: "56%",
+              height: "56%",
               borderRadius: 20,
               boxShadow: "0 4px 8px rgba(0,0,0,0.2)",
             }}
