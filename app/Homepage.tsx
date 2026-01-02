@@ -599,6 +599,18 @@ const Homepage = () => {
               {isPlaying ? "Playing..." : "Press Me :>"}
             </button>
           </div>
+          <div
+            className="mb-12 z-20 justify-center items-center flex"
+            style={{ position: "fixed", bottom: 35 }}
+          >
+            <p
+              className="text-white text-xl max-w-l text-center px-4"
+              style={{ width: 550 }}
+            >
+              No matter where in the world we are, I never want a day to go by
+              without you knowing how much you mean to me. Love you Elly!
+            </p>
+          </div>
         </div>
 
         {/* <RetroButton onClick={handlePress} /> */}
